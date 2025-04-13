@@ -21,12 +21,15 @@ public class ApIgatewayApplication {
                 .route("projet",r->r.path("/api/projets/**")
                         .uri("lb://projet"))
 
-                    .route("MScandidature",
+                .route("MScandidature",
                               r -> r.path("/Candidature/**")
                                       .uri("lb://MScandidature"))
                 .route("reclamationweb",
                         r -> r.path("/api/reclamations/**")
                                 .uri("lb://reclamationweb"))
+                .route("MsMeeting",
+                        r -> r.path("/web/Meeting/**")
+                                .uri("lb://MsMeeting"))
                 .build();
 
     }

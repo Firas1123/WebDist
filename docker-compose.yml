@@ -76,6 +76,21 @@ services:
     networks:
       - app-network
 
+
+  meeting:
+    build:
+      context: ./Meeting
+    container_name: msmeeting
+    ports:
+      - "8086:8086"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      eureka-server:
+        condition: service_started
+    networks:
+      - app-network
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
