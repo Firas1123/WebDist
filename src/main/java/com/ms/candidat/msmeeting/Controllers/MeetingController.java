@@ -83,6 +83,10 @@ public class MeetingController {
     }
 
 
+    @GetMapping("/")
+    public String home() {
+        return "Welcome to the API!";
+    }
 
 
 

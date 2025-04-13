@@ -2,6 +2,7 @@ package com.ms.candidat.msmeeting.Services;
 
 import com.ms.candidat.msmeeting.Entities.Meeting;
 import com.ms.candidat.msmeeting.Entities.MeetingCategory;
+import org.springdoc.core.converters.models.Sort;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public interface IMeetingService {
     public void deleteMeeting(long id);
     public List<Meeting> getMeetingsByCategory(MeetingCategory category);
     List<Meeting> getMeetingsSortedByStartDateTime(boolean ascending);
+
 
 
 

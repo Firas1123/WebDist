@@ -6,6 +6,7 @@ import com.ms.candidat.msmeeting.Entities.User;
 import com.ms.candidat.msmeeting.Repository.MeetingRepository;
 import com.ms.candidat.msmeeting.Repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springdoc.core.converters.models.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
@@ -113,8 +114,7 @@ public class MeetingService implements IMeetingService {
             }
         }
 
-        Meeting updatedMeeting = meetingRepository.save(meeting);
-
+        Meeting updatedMeeting = meetingRepository.save(existingMeeting);
 
         return updatedMeeting;
     }
@@ -138,5 +138,8 @@ public class MeetingService implements IMeetingService {
                 : meetingRepository.findAllByOrderByStartDateTimeDesc();
 
     }
+
+
+
 
 }
