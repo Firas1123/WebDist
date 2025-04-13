@@ -30,6 +30,9 @@ public class ApIgatewayApplication {
                 .route("MsMeeting",
                         r -> r.path("/web/Meeting/**")
                                 .uri("lb://MsMeeting"))
+                .route("Stage",
+                        r -> r.path("/internship-offers/**")
+                                .uri("lb://Stage"))
                 .build();
 
     }

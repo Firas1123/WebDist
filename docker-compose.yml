@@ -91,6 +91,20 @@ services:
     networks:
       - app-network
 
+  offre:
+    build:
+      context: ./Offre
+    container_name: msoffre
+    ports:
+      - "8888:8888"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      eureka-server:
+        condition: service_started
+    networks:
+      - app-network
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
