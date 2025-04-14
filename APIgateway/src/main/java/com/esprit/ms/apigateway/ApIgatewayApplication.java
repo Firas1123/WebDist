@@ -33,6 +33,9 @@ public class ApIgatewayApplication {
                 .route("Stage",
                         r -> r.path("/internship-offers/**")
                                 .uri("lb://Stage"))
+                .route("MSusers",
+                        r -> r.path("/api/**")
+                                .uri("lb://node-login-service"))
                 .build();
 
     }

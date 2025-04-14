@@ -1,5 +1,13 @@
 services:
 
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+  
   mysql:
     image: mysql:8
     container_name: mysql
@@ -34,6 +42,22 @@ services:
       - eureka-server
     networks:
       - app-network
+    
+  user:
+    container_name: user
+    build: ./WebDist-node-user
+    image: userm
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./WebDist-node-user/.env
+    restart: unless-stopped
+    depends_on:
+      - eureka-server
+    networks:
+      - app-network
+
+
 
   candidature:
     build:
