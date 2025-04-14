@@ -1,0 +1,81 @@
+.applications-container {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+
+
+
+
+  
+  .title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #d32f2f; /* Rouge */
+  }
+  
+  .search-bar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+  }
+  
+  .custom-table th {
+    background: #d32f2f; /* Rouge */
+    color: white;
+    padding: 10px;
+  }
+  
+  .custom-table td {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .status-badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .status-open {
+    background-color: #28a745; /* Vert */
+  }
+  
+  .status-closed {
+    background-color: #dc3545; /* Rouge */
+  }
+  
+  .status-archived {
+    background-color: #6c757d; /* Gris */
+  }
+  
+  .internship-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .internship-image:hover {
+    transform: scale(1.2);
+  }
+  
+  .paid-icon {
+    color: green;
+  }
+  
+  .not-paid-icon {
+    color: red;
+  }
+  

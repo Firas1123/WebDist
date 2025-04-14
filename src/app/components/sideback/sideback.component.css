@@ -1,0 +1,19 @@
+.sidebar {
+    width: 250px !important; /* Ajuste selon ton design */
+    min-width: 250px;
+    background-color: #f8f9fa; /* Couleur de fond */
+  }
+  /* Style pour le logo dans la navigation */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 0;
+}
+
+.logo-img {
+  max-height: 40px;  /* Ajuste la hauteur du logo */
+  max-width: 150px;  /* Ajuste la largeur du logo si nécessaire */
+  object-fit: contain;  /* S'assure que l'image garde ses proportions */
+  margin-right: 10px;  /* Un petit espacement à droite du logo si nécessaire */
+}

@@ -1,0 +1,125 @@
+.dashboard {
+  text-align: center;
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+h2 {
+  position: sticky;
+  top: 0;
+  background-color: white; /* Assure une bonne lisibilité */
+  padding: 10px;
+  z-index: 1000; /* Place le titre au-dessus des autres éléments */
+  font-size: 24px; /* Le rendre plus grand */
+  text-align: center;
+  color: #df4653; /* Rouge pour mieux ressortir */
+  border-bottom: 2px solid #ddd;
+}
+
+
+
+
+.stat-card:hover {
+  transform: scale(1.15);
+}
+
+.stat-number {
+  font-size: 32px;
+  font-weight: bold;
+  color: #E63946;
+  animation: countUp 1.5s ease-out;
+}
+
+
+
+
+#message {
+  font-size: 16px;
+  font-weight: bold;
+  color: #B22222;
+  margin-top: 20px;
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+.stat-card h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.stat-card .icon {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+/* ✅ Fixer le titre en haut */
+.sticky-title {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
+  text-align: center;
+  z-index: 1000;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Fixer le body pour éviter que les stats disparaissent */
+.statistics-container {
+  margin-top: 80px; /* Ajuste cette valeur pour éviter que les stats soient cachées par le titre */
+  padding: 20px;
+  min-height: 100vh; /* Assure que le body est bien affiché */
+  overflow-y: auto;
+}
+
+/* ✅ Espacer et ajouter des bordures rouges entre les statistiques */
+.stat-card {
+  margin: 20px auto;
+  padding: 15px;
+  border: 2px solid red;
+  border-radius: 10px;
+  text-align: center;
+  background: rgb(255, 249, 249);
+  width: 30%;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Animation pour les chiffres */
+.stat-value {
+  font-size: 32px;
+  font-weight: bold;
+  color: red;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ✅ S'assurer que la courbe en bas est bien visible */
+.chart-container {
+  min-height: 300px;
+  margin-top: 20px;
+  overflow: visible;
+}
+/* ✅ Conteneur principal des statistiques */
+.statistics-row {
+  display: flex;
+  justify-content: space-between; /* Espacement équilibré entre les stats */
+  align-items: center;
+  width: 100%;
+  max-width: 1200px; /* Ajuste selon la largeur désirée */
+  margin: 20px auto;
+  padding: 20px;
+}

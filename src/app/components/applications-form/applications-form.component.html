@@ -1,0 +1,83 @@
+<!-- ✅ Pop-up d'alerte en HTML pour les utilisateurs qui ont déjà appliqué -->
+<div *ngIf="hasAlreadyApplied" class="overlay">
+  <div class="popup">
+    <div class="popup-header">
+      <h5>⚠️ Already Applied!</h5>
+    </div>
+    <div class="popup-body">
+      <p>You have already applied for this internship.</p>
+    </div>
+    <div class="popup-footer">
+      <button class="btn btn-danger" (click)="redirectToHome()">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ LE FORMULAIRE S'AFFICHE SEULEMENT SI L'UTILISATEUR N'A PAS POSTULÉ -->
+<div class="container mt-4">
+  <div class="card p-4 shadow" *ngIf="!hasAlreadyApplied">
+    <h3 class="text-center mb-4 text-danger font-weight-bold">Submit Your Application</h3>
+
+    <form [formGroup]="applicationForm" (ngSubmit)="submitApplication()">
+      <div class="row">
+        <!-- Partie Gauche -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label"><i class="bi bi-person"></i> Full Name</label>
+            <input type="text" class="form-control" formControlName="fullName">
+            <small class="text-danger" *ngIf="applicationForm.get('fullName')?.touched && applicationForm.get('fullName')?.invalid">Full name is required.</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label"><i class="bi bi-envelope"></i> Email</label>
+            <input type="email" class="form-control" formControlName="email">
+            <small class="text-danger" *ngIf="applicationForm.get('email')?.touched && applicationForm.get('email')?.invalid">Valid email is required.</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label"><i class="bi bi-telephone"></i> Phone</label>
+            <input type="text" class="form-control" formControlName="phone">
+            <small class="text-danger" *ngIf="applicationForm.get('phone')?.touched && applicationForm.get('phone')?.invalid">Phone number is required.</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label"><i class="bi bi-geo-alt"></i> City</label>
+            <input type="text" class="form-control" formControlName="city">
+            <small class="text-danger" *ngIf="applicationForm.get('city')?.touched && applicationForm.get('city')?.invalid">City is required.</small>
+          </div>
+        </div>
+
+        <!-- Partie Droite -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label"><i class="bi bi-clipboard"></i> Career Objective</label>
+            <textarea class="form-control" formControlName="careerObjective" rows="3"></textarea>
+            <small class="text-danger" *ngIf="applicationForm.get('careerObjective')?.touched && applicationForm.get('careerObjective')?.invalid">Career objective is required.</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label"><i class="bi bi-tools"></i> Technology Profile</label>
+            <textarea class="form-control" formControlName="technologyProfile" rows="3"></textarea>
+            <small class="text-danger" *ngIf="applicationForm.get('technologyProfile')?.touched && applicationForm.get('technologyProfile')?.invalid">Technology profile is required.</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label"><i class="bi bi-star"></i> Skills</label>
+            <input type="text" class="form-control" formControlName="skills">
+            <small class="text-danger" *ngIf="applicationForm.get('skills')?.touched && applicationForm.get('skills')?.invalid">Skills are required.</small>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label"><i class="bi bi-briefcase"></i> Experience</label>
+            <textarea class="form-control" formControlName="experience" rows="3"></textarea>
+            <small class="text-danger" *ngIf="applicationForm.get('experience')?.touched && applicationForm.get('experience')?.invalid">Experience is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-danger w-100 mt-3">
+        <i class="bi bi-send"></i> Submit Application
+      </button>
+    </form>
+  </div>
+</div>

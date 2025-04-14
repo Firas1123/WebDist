@@ -1,0 +1,126 @@
+<div class="card p-4 shadow">
+    <h3 class="text-center mb-4" style="color:#dc3545;">
+      <i class="bi bi-bar-chart-fill"></i> Internship Offers Dashboard
+    </h3>
+  
+    <!-- Zone de recherche et filtres -->
+    <div class="mb-4 d-flex flex-wrap align-items-center justify-content-between">
+      
+      <!-- Zone de recherche -->
+      <div class="search-container">
+        <input type="text" class="form-control search-input"
+          placeholder="🔍 Rechercher par titre ou entreprise..."
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="filterOffers()"
+          #searchBox>
+        <i class="bi bi-search search-icon"></i>
+        <i class="bi bi-x-circle clear-icon" *ngIf="searchTerm" (click)="clearSearch(searchBox)"></i>
+      </div>
+  
+      <!-- Filtre par statut -->
+      <div class="filter-container">
+        <label class="filter-label">
+          <i class="bi bi-list-task"></i> 
+          <select class="form-select filter-select" [(ngModel)]="statusFilter" (change)="filterOffers()">
+            <option value="">All Statuses</option>
+            <option value="OPEN">Open</option>
+            <option value="CLOSED">Closed</option>
+            <option value="PENDING">Pending</option>
+          </select>
+        </label>
+      </div>
+  
+      <!-- Filtres Remote & Paid -->
+      <div class="form-check-container">
+        <label class="form-check-label">
+          <i class="bi bi-house-door"></i> Remote Only
+          <input class="form-check-input" type="checkbox" [(ngModel)]="remoteFilter" (change)="filterOffers()">
+        </label>
+      </div>
+  
+      <div class="form-check-container">
+        <label class="form-check-label">
+          <i class="bi bi-cash-coin"></i> Paid Only
+          <input class="form-check-input" type="checkbox" [(ngModel)]="paidFilter" (change)="filterOffers()">
+        </label>
+      </div>
+    </div>
+  
+    <!-- Tableau des offres -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th (click)="sort('id')">#</th>
+            <th (click)="sort('title')">Title</th>
+            <th (click)="sort('companyName')">Company</th>
+            <th (click)="sort('location')">Location</th>
+            <th (click)="sort('duration')">Duration</th>
+            <th (click)="sort('stageType')">Stage Type</th>
+            <th (click)="sort('offerStatus')">Status</th>
+            <th (click)="sort('remote')">Remote</th>
+            <th (click)="sort('paid')">Paid</th>
+            <th (click)="sort('startDate')">Start Date</th>
+            <th (click)="sort('creationDate')">Date Created</th>
+            <th>Expiration Date</th>
+            <th>Image</th>
+            <th>Weather</th> <!-- ✅ Ajout colonne météo -->
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let offer of filteredOffers; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ offer.title }}</td>
+            <td>{{ offer.companyName }}</td>
+            <td>{{ offer.location }}</td>
+            <td>{{ offer.duration }} months</td>
+            <td>{{ offer.stageType }}</td>
+            <td>{{ offer.offerStatus }}</td>
+            <td>
+              <i class="bi" [ngClass]="offer.remote ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-danger'"></i>
+            </td>
+            <td>
+              <i class="bi" [ngClass]="offer.paid ? 'bi-cash text-success' : 'bi-cash-coin text-danger'"></i>
+            </td>
+            <td>{{ offer.startDate }}</td>
+            <td>{{ offer.creationDate | date:'short' }}</td>
+            <td>{{ getExpirationDate(offer.creationDate) | date:'short' }}</td>
+            <td>
+              <img *ngIf="offer.imageUrls.length > 0" [src]="offer.imageUrls[0]" alt="Offer Image" class="offer-img" style="width: 70px; height: auto;">
+              <span *ngIf="offer.imageUrls.length === 0">No Image</span>
+            </td>
+  
+            <!-- ✅ Météo affichée ici -->
+            <td>
+              <div *ngIf="offer.weather" class="d-flex align-items-center">
+                <img [src]="'http://openweathermap.org/img/wn/' + offer.weather.weather[0].icon + '@2x.png'" 
+                     alt="Weather Icon" 
+                     style="width: 40px; height: 40px; margin-right: 6px;">
+                <div>
+                  <strong>{{ offer.weather.main.temp }}°C</strong><br>
+                  <small class="text-muted">{{ offer.weather.weather[0].description }}</small>
+                </div>
+              </div>
+              <span *ngIf="!offer.weather" class="text-muted">N/A</span>
+            </td>
+  
+            <td class="actions-column">
+              <div class="btn-group-vertical">
+                <button class="btn btn-primary btn-sm" (click)="updateOffer(offer.id)">
+                  <i class="bi bi-pencil-square"></i> Update
+                </button>
+                <button class="btn btn-danger btn-sm" (click)="deleteOffer(offer.id)">
+                  <i class="bi bi-trash"></i> Delete
+                </button>
+                <button class="btn btn-success btn-sm" [routerLink]="['/backoffice/application-form', offer.id]">
+                  <i class="bi bi-file-earmark-text"></i> Apply
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

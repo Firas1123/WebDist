@@ -1,0 +1,112 @@
+<app-header></app-header>
+
+<div class="applications-container">
+  <h2 class="title">📌 My Applications</h2>
+
+  <!-- Barre de recherche améliorée -->
+  <mat-form-field appearance="outline" class="search-bar">
+    <mat-label>Search Applications</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search by title, company, or location">
+  </mat-form-field>
+
+  <!-- Loader (affiché si les données sont en cours de chargement) -->
+  <div class="loading-container" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!-- Tableau amélioré avec Angular Material -->
+  <table mat-table [dataSource]="filteredApplications" class="mat-elevation-z8 custom-table" *ngIf="!loading">
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let app"> {{ app.internshipOffer?.title }} </td>
+    </ng-container>
+
+    <!-- Company Column -->
+    <ng-container matColumnDef="company">
+      <th mat-header-cell *matHeaderCellDef> Company </th>
+      <td mat-cell *matCellDef="let app"> {{ app.internshipOffer?.companyName }} </td>
+    </ng-container>
+
+    <!-- Location Column -->
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef> Location </th>
+      <td mat-cell *matCellDef="let app"> {{ app.internshipOffer?.location }} </td>
+    </ng-container>
+
+    <!-- Duration Column -->
+    <ng-container matColumnDef="duration">
+      <th mat-header-cell *matHeaderCellDef> Duration (months) </th>
+      <td mat-cell *matCellDef="let app"> {{ app.internshipOffer?.duration }} </td>
+    </ng-container>
+
+    <!-- Stage Type Column -->
+    <ng-container matColumnDef="stageType">
+      <th mat-header-cell *matHeaderCellDef> Type </th>
+      <td mat-cell *matCellDef="let app"> {{ app.internshipOffer?.stageType }} </td>
+    </ng-container>
+
+    <!-- Offer Status Column -->
+    <ng-container matColumnDef="offerStatus">
+      <th mat-header-cell *matHeaderCellDef> Offer Status </th>
+      <td mat-cell *matCellDef="let app"> 
+        <span class="status-badge" [ngClass]="getStatusClass(app.internshipOffer?.offerStatus)">
+          {{ app.internshipOffer?.offerStatus }}
+        </span>
+      </td>
+    </ng-container>
+
+    <!-- Remote Column -->
+    <ng-container matColumnDef="remote">
+      <th mat-header-cell *matHeaderCellDef> Remote </th>
+      <td mat-cell *matCellDef="let app"> 
+        {{ app.internshipOffer?.remote ? 'Yes' : 'No' }}
+      </td>
+    </ng-container>
+
+    <!-- Paid Column -->
+    <ng-container matColumnDef="paid">
+      <th mat-header-cell *matHeaderCellDef> Paid </th>
+      <td mat-cell *matCellDef="let app"> 
+        <mat-icon *ngIf="app.internshipOffer?.paid">check_circle</mat-icon>
+        <mat-icon *ngIf="!app.internshipOffer?.paid">cancel</mat-icon>
+      </td>
+    </ng-container>
+
+    <!-- Submission Date Column -->
+    <ng-container matColumnDef="submissionDate">
+      <th mat-header-cell *matHeaderCellDef> Submission Date </th>
+      <td mat-cell *matCellDef="let app"> {{ app.submissionDate | date:'yyyy-MM-dd HH:mm' }} </td>
+    </ng-container>
+
+    <!-- Image Column -->
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef> Image </th>
+      <td mat-cell *matCellDef="let app">
+        <img *ngIf="app.internshipOffer?.imageUrls?.length > 0" 
+             [src]="app.internshipOffer.imageUrls[0]" 
+             alt="Internship Image" class="internship-image"
+             (click)="openImageModal(app.internshipOffer.imageUrls[0])">
+      </td>
+    </ng-container>
+
+    <!-- ✅ Application Status Column -->
+    <ng-container matColumnDef="applicationStatus">
+      <th mat-header-cell *matHeaderCellDef> Application Status </th>
+      <td mat-cell *matCellDef="let app">
+        <span class="status-badge" [ngClass]="getApplicationStatusClass(app.status)">
+          {{ app.status }}
+        </span>
+      </td>
+    </ng-container>
+
+    <!-- Table Header and Rows -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+</div>
+
+<app-footer></app-footer>

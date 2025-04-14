@@ -1,0 +1,68 @@
+/* Existing styles (add these if not already present) */
+.container {
+  max-width: 1200px;
+}
+
+.form-control, .form-select {
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+}
+
+.form-check-input {
+  margin-right: 0.5rem;
+}
+
+.offer-card {
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+}
+
+.offer-card:hover {
+  transform: translateY(-5px);
+}
+
+.offer-img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.offer-status {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.btn-danger {
+  background-color: #F28B82;
+  border-color: #F28B82;
+}
+
+.btn-danger:hover {
+  background-color: #e57373;
+  border-color: #e57373;
+}
+
+/* Map Filter Styling */
+.map-container {
+  height: 300px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #333;
+}
+
+.text-success, .text-danger {
+  font-size: 0.875rem;
+}
+
+/* Input Group */
+.input-group-text {
+  background-color: #f8f9fa;
+  border-radius: 8px 0 0 8px;
+}

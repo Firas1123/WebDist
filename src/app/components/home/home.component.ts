@@ -12,6 +12,4 @@ export class HomeComponent {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
-
-
 }

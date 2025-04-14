@@ -1,7 +1,66 @@
-html {
-    scroll-behavior: smooth;
-}
-main {
-    overflow: visible !important;
+
+  
+  .sidebar {
+    position: fixed;
+    top: 60px; /* Hauteur du header, ajuste précisément selon ton cas */
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    background-color: #f8f9fa;
+    z-index: 1000;
   }
-    
+  
+  .content-wrapper {
+    margin-left: 250px; /* Même largeur que sidebar */
+    padding-top: 80px; /* Augmente clairement l'espace en haut pour éviter collision avec header */
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    min-height: 100vh;
+    background-color: #ffffff;
+    overflow-y: auto;
+  }
+  
+  .card {
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  .card h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #dc3545;
+    margin-bottom: 25px;
+  }
+  
+  label.form-label {
+    font-weight: 600;
+    color: #555;
+  }
+  
+  .form-control, .form-select {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+  }
+  .content-wrapper .card {
+    margin-top: 120px; /* ajuste précisément cet espace selon la hauteur du header */
+}
+
+  
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

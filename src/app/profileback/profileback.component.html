@@ -1,15 +1,11 @@
-<app-headerback></app-headerback>
-<app-sideback></app-sideback>
 
-<div id="page-wrapper">
-    <div class="container-fluid">
-        <div class="row bg-title">
-        </div>
-        <!-- Dashboard Stats -->
-            <div class="row mt-5 text-center">
-                <h2>Welcome to Profile Page</h2>
-            </div>     
-    </div> 
+<app-headerback></app-headerback>
+
+<div class="main-layout">
+  <app-sideback class="sidebar"></app-sideback>
+  <div class="content-wrapper p-4">
+    <router-outlet></router-outlet> <!-- ton formulaire doit venir d'ici -->
+  </div>
 </div>
 
 <app-footerback></app-footerback>

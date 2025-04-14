@@ -1,0 +1,95 @@
+<div class="card p-4 shadow-sm">
+  <h3 class="text-center mb-4">Publish an Internship Offer</h3>
+
+  <form [formGroup]="internshipForm" (ngSubmit)="submitOffer()" class="internship-form">
+    <div class="row g-4">
+      <!-- Left Column -->
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label class="form-label"><i class="bi bi-briefcase-fill me-2"></i>Title</label>
+          <input type="text" class="form-control" formControlName="title" placeholder="e.g., Software Engineer Intern">
+          <small class="text-danger" *ngIf="internshipForm.get('title')?.touched && internshipForm.get('title')?.invalid">Title is required.</small>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label"><i class="bi bi-building me-2"></i>Company Name</label>
+          <input type="text" class="form-control" formControlName="companyName" placeholder="e.g., TechCorp">
+          <small class="text-danger" *ngIf="internshipForm.get('companyName')?.touched && internshipForm.get('companyName')?.invalid">Company name is required.</small>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label"><i class="bi bi-geo-alt me-2"></i>Location</label>
+          <small class="form-text text-muted d-block mb-2">Click on the map to select</small>
+          <div #mapContainer id="map" class="map-container"></div>
+          <small class="text-success mt-2 d-block" *ngIf="internshipForm.get('location')?.value">Selected: {{ internshipForm.get('location')?.value }}</small>
+          <small class="text-danger" *ngIf="internshipForm.get('location')?.touched && internshipForm.get('location')?.invalid">Location is required.</small>
+          <small class="text-danger" *ngIf="geocodeError">{{ geocodeError }}</small>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label"><i class="bi bi-clock me-2"></i>Duration (months)</label>
+          <input type="number" class="form-control" formControlName="duration" placeholder="e.g., 3">
+          <small class="text-danger" *ngIf="internshipForm.get('duration')?.touched && internshipForm.get('duration')?.invalid">Duration is required.</small>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label"><i class="bi bi-calendar-date me-2"></i>Start Date</label>
+          <input type="date" class="form-control" formControlName="startDate">
+          <small class="text-danger" *ngIf="internshipForm.get('startDate')?.touched && internshipForm.get('startDate')?.invalid">Start date is required.</small>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label class="form-label"><i class="bi bi-tags me-2"></i>Stage Type</label>
+          <select class="form-select" formControlName="stageType">
+            <option value="" disabled>Select Type</option>
+            <option value="Summer">Summer</option>
+            <option value="PFE">PFE</option>
+          </select>
+          <small class="text-danger" *ngIf="internshipForm.get('stageType')?.touched && internshipForm.get('stageType')?.invalid">Stage type is required.</small>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label"><i class="bi bi-info-circle me-2"></i>Offer Status</label>
+          <select class="form-select" formControlName="offerStatus">
+            <option value="" disabled>Select Status</option>
+            <option value="OPEN">Open</option>
+            <option value="CLOSED">Closed</option>
+            <option value="ARCHIVED">Archived</option>
+          </select>
+          <small class="text-danger" *ngIf="internshipForm.get('offerStatus')?.touched && internshipForm.get('offerStatus')?.invalid">Offer status is required.</small>
+        </div>
+
+        <div class="form-group mb-3">
+          <div class="form-check form-switch">
+            <input type="checkbox" class="form-check-input" formControlName="isRemote" id="remoteSwitch">
+            <label class="form-check-label" for="remoteSwitch"><i class="bi bi-wifi me-2"></i>Remote</label>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <div class="form-check form-switch">
+            <input type="checkbox" class="form-check-input" formControlName="isPaid" id="paidSwitch">
+            <label class="form-check-label" for="paidSwitch"><i class="bi bi-currency-dollar me-2"></i>Paid</label>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label"><i class="bi bi-card-text me-2"></i>Description</label>
+          <textarea class="form-control" formControlName="jobDescription" rows="4" placeholder="Describe the internship role..."></textarea>
+          <small class="text-danger" *ngIf="internshipForm.get('jobDescription')?.touched && internshipForm.get('jobDescription')?.invalid">Description is required (max 500 characters).</small>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label"><i class="bi bi-images me-2"></i>Upload Images</label>
+          <input type="file" class="form-control" (change)="onFileSelected($event)" multiple>
+          <small class="text-danger" *ngIf="fileError">Please select at least one image.</small>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100 mt-4">Add Offer</button>
+  </form>
+</div>

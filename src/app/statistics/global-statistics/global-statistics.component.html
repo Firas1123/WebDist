@@ -1,0 +1,82 @@
+<div class="dashboard">
+  <h2>📊 Global Statistics</h2>
+  <div class="card p-4 shadow">
+    <h3 class="text-center mb-4" style="color:#dc3545;">
+        <i class="bi bi-bar-chart-fill"></i> Internship Offers Overview
+    </h3>
+
+    <div class="stats-container">
+      <h2>Statistics Overview</h2>
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Total Offers</td>
+            <td>{{ stats?.totalOffers }}</td>
+          </tr>
+          <tr>
+            <td>Open Offers</td>
+            <td>{{ stats?.openOffers }}</td>
+          </tr>
+          <tr>
+            <td>Closed Offers</td>
+            <td>{{ stats?.closedOffers }}</td>
+          </tr>
+          <tr>
+            <td>Archived Offers</td>
+            <td>{{ stats?.archivedOffers }}</td>
+          </tr>
+          <tr>
+            <td>Paid Offers</td>
+            <td>{{ stats?.paidOffers }}</td>
+          </tr>
+          <tr>
+            <td>Remote Offers</td>
+            <td>{{ stats?.remoteOffers }}</td>
+          </tr>
+          <tr>
+            <td>Average Duration</td>
+            <td>{{ stats?.averageDuration }}</td>
+          </tr>
+          <tr>
+            <td>Total Applications</td>
+            <td>{{ stats?.totalApplications }}</td>
+          </tr>
+          <tr>
+            <td>Avg Applications Per Offer</td>
+            <td>{{ stats?.avgApplicationsPerOffer }}</td>
+          </tr>
+          <tr>
+            <td>Total Notifications</td>
+            <td>{{ stats?.totalNotifications }}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
+  <div class="chart-container">
+    <canvas id="barChart"></canvas>
+    
+    <p>📌 Company Comparison based on the number of internship offers.</p>
+  </div>
+
+  <div class="chart-container">
+    <canvas id="lineChart"></canvas>
+    <p>📈 Internship Offers Growth Over Time.</p>
+  </div>
+
+  <div class="chart-container">
+    <canvas id="pieChart"></canvas>
+    <p>📍 Geographical Distribution </p>
+  </div>
+
+  <div class="chart-container">
+    <canvas id="gaugeChart"></canvas>
+    <p>📌 Application-to-Offer Ratio Indicator.</p>
+  </div>
+</div>

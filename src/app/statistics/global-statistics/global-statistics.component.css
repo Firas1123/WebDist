@@ -1,0 +1,155 @@
+.chart-container {
+    width: 50%;
+    margin: 20px auto;
+    padding: 15px;
+    background: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    text-align: center;
+  }
+  
+  canvas {
+    max-width: 100%;
+    max-height: 400px;
+  }
+  
+  h2 {
+    color: #333;
+    text-align: center;
+  }
+  .chart-container {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .chart-container:hover {
+    transform: scale(1.10);
+    box-shadow: 0px 40px 15px rgba(0, 0, 0, 0.2);
+  }
+  .chart-container {
+    min-height: 400px; /* Augmenter la hauteur des containers */
+    margin-bottom: 80px; /* Ajouter un espace entre les graphiques */
+  }
+  
+  
+  /* Container Styling */
+.stats-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header Styling */
+h2 {
+  font-size: 26px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  text-transform: uppercase;
+}
+
+/* Table Styling */
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Header cells (for better visibility) */
+.stats-table th {
+  padding: 15px;
+  text-align: left;
+  background-color: #007bff;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+/* Regular table cells */
+.stats-table td {
+  padding: 15px;
+  text-align: left;
+  background-color: #fff;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+}
+
+/* Alternating row colors */
+.stats-table tr:nth-child(even) td {
+  background-color: #f9f9f9;
+}
+
+/* Bold the last column */
+.stats-table td:last-child {
+  font-weight: 600;
+  color: #007bff;
+}
+
+/* Hover effect */
+.stats-table tr:hover td {
+  background-color: #eaf4ff;
+  transition: all 0.3s ease;
+}
+
+/* Box shadow on hover for table rows */
+.stats-table tr:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer Row (optional, if needed for totals) */
+.stats-table tfoot td {
+  font-weight: 600;
+  background-color: #f9f9f9;
+}
+
+/* Responsiveness: Adjust font size on smaller screens */
+@media (max-width: 768px) {
+  .stats-table th, .stats-table td {
+      padding: 10px;
+      font-size: 12px;
+  }
+
+  .stats-container {
+      padding: 20px;
+  }
+  .stats-container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .stats-table th, .stats-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+  }
+  
+  .stats-table th {
+    background-color: #fce4e4; /* Rouge doux */
+    color: #c62828; /* Rouge foncé */
+    font-weight: bold;
+  }
+  
+  .stats-table td:first-child {
+    color: #c62828; /* Rouge doux pour les libellés */
+    font-weight: bold;
+  }
+  
+  .stats-table td:nth-child(2) {
+    color: #1976d2; /* Bleu vif pour les valeurs */
+    font-weight: bold;
+  }
+  
+}

@@ -1,0 +1,23 @@
+#footer {
+    font-size: 14px;  /* Réduit la taille du texte */
+    padding: 10px 0;  /* Réduit l'espace vertical */
+    background: #f8f9fa; /* Optionnel : rend le footer plus discret */
+}
+
+#footer p {
+    margin: 0;
+    padding: 0;
+}
+
+#footer .sitename {
+    font-size: 15px; /* Légèrement plus grand pour mettre en avant FUTURELINK */
+    font-weight: bold;
+}
+
+.copyright {
+    padding: 5px 0; /* Réduit l’espace intérieur */
+}
+
+.credits {
+    font-size: 12px; /* Rend les crédits plus petits */
+}

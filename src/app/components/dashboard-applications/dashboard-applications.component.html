@@ -1,0 +1,128 @@
+<div class="card p-4 shadow">
+    
+        <h3 class="text-center mb-4" style="color:#dc3545;">
+            <i class="bi bi-bar-chart-fill"></i> Applications Dashbaord
+        </h3>
+
+  <!-- Section NEWS & Notifications -->
+  <div class="card p-4 shadow">
+      <h3 class="text-center mb-4" style="color:#dc3545;">NEWS</h3>
+
+      <!-- Notifications Section -->
+      <div *ngIf="notifications.length > 0" class="mb-4">
+          <h4>Notifications</h4>
+          <div class="table-responsive">
+              <table class="table table-bordered table-striped">
+                  <thead class="table-dark">
+                      <tr>
+                          <th>Message</th>
+                          <th>Date</th>
+                          <th>Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let notification of notifications">
+                          <td>
+                              <i *ngIf="!notification.read" class="bi bi-circle-fill text-danger"></i>
+                              <i *ngIf="notification.read" class="bi bi-circle-fill text-muted"></i>
+                              {{ notification.message }}
+                          </td>
+                          <td>{{ notification.timestamp | date:'short' }}</td>
+                          <td>
+                              <span *ngIf="!notification.read" class="badge bg-danger">Unread</span>
+                              <span *ngIf="notification.read" class="badge bg-success">Read</span>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+      <div *ngIf="notifications.length === 0" class="alert alert-secondary">
+          <strong>No new notifications!</strong>
+      </div>
+  </div>
+
+  <!-- Filtres et Options -->
+  <div class="mb-4">
+      <div class="row g-3">
+          <!-- Barre de recherche -->
+          <div class="col-md-4">
+              <input type="text" class="form-control" placeholder=" 🔍Search by full name or email..."
+                  [(ngModel)]="searchTerm" (ngModelChange)="filterApplications()">
+          </div>
+
+          <!-- Filtre par Offre -->
+          <div class="col-md-4">
+              <select class="form-select" [(ngModel)]="offerIdFilter" (change)="filterApplications()">
+                  <option value="">All Offers</option>
+                  <option *ngFor="let offer of internshipOffers" [value]="offer.id">
+                      {{ offer.title }}
+                  </option>
+              </select>
+          </div>
+
+          <!-- Tri -->
+          <div class="col-md-4">
+              <select class="form-select" [(ngModel)]="sortField" (change)="filterApplications()">
+                  <option value="">Sort By...</option>
+                  <option value="fullName">Full Name</option>
+                  <option value="email">Email</option>
+                  <option value="submissionDate">Submission Date</option>
+              </select>
+          </div>
+      </div>
+  </div>
+
+  <!-- Tableau des Applications -->
+<!-- Tableau des Applications -->
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th (click)="sort('id')">#</th>
+                <th (click)="sort('fullName')">Full Name</th>
+                <th (click)="sort('email')">Email</th>
+                <th (click)="sort('phone')">Phone</th>
+                <th (click)="sort('city')">City</th>
+                <th (click)="sort('submissionDate')">Submission Date</th>
+                <th (click)="sort('internshipOffer')">Offer ID</th>
+                <th>Status</th> <!-- ✅ Nouvelle colonne pour le statut -->
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let application of filteredApplications; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ application.fullName }}</td>
+                <td>{{ application.email }}</td>
+                <td>{{ application.phone }}</td>
+                <td>{{ application.city }}</td>
+                <td>{{ application.submissionDate | date:'medium' }}</td>
+                <td>{{ application.internshipOffer.id }}</td>
+                
+                <!-- ✅ Affichage du statut avec badges -->
+                <td>
+                    <span *ngIf="application.status === 'ACCEPTED'" class="badge bg-success">✅ Accepted</span>
+                    <span *ngIf="application.status === 'WAITING'" class="badge bg-warning text-dark">⏳ Waiting</span>
+                    <span *ngIf="application.status === 'DENIED'" class="badge bg-danger">❌ Denied</span>
+                </td>
+
+                <!-- ✅ Boutons pour modifier le statut -->
+                <td>
+                    <button class="btn btn-success btn-sm me-1" (click)="changeStatus(application, 'ACCEPTED')">
+                        ✅ Accept
+                    </button>
+                    <button class="btn btn-warning btn-sm me-1 text-white" (click)="changeStatus(application, 'WAITING')">
+                        ⏳ Waiting
+                    </button>
+                    <button class="btn btn-danger btn-sm" (click)="changeStatus(application, 'DENIED')">
+                         Deny
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</div>

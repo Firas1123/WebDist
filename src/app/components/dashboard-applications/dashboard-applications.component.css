@@ -1,0 +1,11 @@
+/* Ajouter un espace entre le tableau des notifications et le tableau du Dashboard */
+.news-section {
+    margin-bottom: 50px;  /* Ajuste cette valeur pour l'espace entre les deux sections */
+  }
+  
+  /* Réduire l'espace entre le titre Applications et le tableau des notifications */
+  .card p-4 {
+    margin-top: 10px; /* Réduit l'espace au-dessus du titre Applications */
+    padding-top: 50px; /* Ajuste le padding pour réduire l'espace */
+  }
+  

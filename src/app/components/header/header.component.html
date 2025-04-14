@@ -35,16 +35,17 @@
     <nav id="navmenu" class="navmenu">
       <ul>
         <li><a routerLink="javascript:void(0)" class="active" (click)="scrollToSection('hero')">Home</a></li>
+        
         <li><a routerLink="javascript:void(0)"  (click)="scrollToSection('about')">Opportunities</a></li>
         <li><a routerLink="javascript:void(0)" (click)="scrollToSection('internship-offers')">Internship Offers</a></li>
         <li><a routerLink="javascript:void(0)" (click)="scrollToSection('testimonials')">Feedback</a></li>
         <li><a routerLink="javascript:void(0)" (click)="scrollToSection('contact')">Contact</a></li>
-
+           <!-- ✅ Ajout du lien vers "My Applications" dans la navbar -->
+           <li><a routerLink="/my-applications">My Applications</a></li>
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
 
-    <a class="btn-getstarted" routerLink="/login">Log in</a>
 
   </div>
 </header>
