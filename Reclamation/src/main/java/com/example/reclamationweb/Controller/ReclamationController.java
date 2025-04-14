@@ -3,6 +3,7 @@ package com.example.reclamationweb.Controller;
 import com.example.reclamationweb.Entities.Reclamation;
 import com.example.reclamationweb.Service.ReclamationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,6 +40,14 @@ public class ReclamationController {
     public void deleteReclamation(@PathVariable Long id) {
         reclamationService.deleteReclamation(id);
     }
+
+    @Value("${welcome.message}")
+    private String welcomeMessage;
+    @GetMapping("/welcome")
+    public String welcome() {
+        return welcomeMessage;
+    }
+
 }
 
 

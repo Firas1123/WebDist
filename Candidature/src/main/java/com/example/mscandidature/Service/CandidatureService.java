@@ -2,17 +2,41 @@ package com.example.mscandidature.Service;
 
 import com.example.mscandidature.Entity.Candidature;
 import com.example.mscandidature.Repository.CandidatureRepository;
+import com.example.mscandidature.client.OfferFeignClient;
+import com.example.mscandidature.dto.InternshipOfferDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CandidatureService {
     @Autowired
     private CandidatureRepository candidatureRepository;
+    @Autowired
+    private OfferFeignClient offerFeignClient;
+
+
+    public InternshipOfferDto fetchOfferDetails(long offerId) {
+        return offerFeignClient.getInternshipOfferById(offerId);
+    }
+    public List<InternshipOfferDto> getOffers(){
+        return offerFeignClient.getAllInternshipOffers();
+    }
+    public List<InternshipOfferDto> getFavoriteOffers(int candidateId) {
+        Candidature candidate = candidatureRepository.findById(candidateId).get();
+        return candidate.getFavoriteOffers().stream()
+                .map(offerFeignClient::getInternshipOfferById)
+                .collect(Collectors.toList());
+    }
+    public void saveFavoriteoffres(int candidateId, long offreId) {
+        Candidature candidate = candidatureRepository.findById(candidateId).get();
+        candidate.getFavoriteOffers().add(offreId);
+        candidatureRepository.save(candidate);
+    }
 
     // Add a new Candidature
     public Candidature addCandidature(Candidature candidature) {

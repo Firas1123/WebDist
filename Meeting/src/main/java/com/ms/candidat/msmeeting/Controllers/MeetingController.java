@@ -4,6 +4,7 @@ import com.ms.candidat.msmeeting.Entities.Meeting;
 import com.ms.candidat.msmeeting.Entities.MeetingCategory;
 import com.ms.candidat.msmeeting.Services.IMeetingService;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -84,4 +85,11 @@ public class MeetingController {
     public String home() {
         return "Welcome to the API!";
     }
+    @Value("${welcome.message}")
+    private String welcomeMessage;
+    @GetMapping("/welcome")
+    public String welcome() {
+        return welcomeMessage;
+    }
+
 }

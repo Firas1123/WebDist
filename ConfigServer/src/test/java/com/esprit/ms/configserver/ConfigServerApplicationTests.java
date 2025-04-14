@@ -1,10 +1,10 @@
-package com.esprit.ms.projet;
+package com.esprit.ms.configserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProjetApplicationTests {
+class ConfigServerApplicationTests {
 
     @Test
     void contextLoads() {

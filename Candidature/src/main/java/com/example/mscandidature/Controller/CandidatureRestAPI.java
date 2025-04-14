@@ -4,7 +4,10 @@ import com.example.mscandidature.Entity.Candidature;
 import com.example.mscandidature.Repository.CandidatureRepository;
 import com.example.mscandidature.Service.CandidatureService;
 import com.example.mscandidature.Service.EmailService;
+import com.example.mscandidature.client.OfferFeignClient;
+import com.example.mscandidature.dto.InternshipOfferDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,17 +17,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/Candidature")
 public class CandidatureRestAPI {
-    private String title="hello";
-    @RequestMapping("/hello")
-    public String sayHello(){
-        System.out.println(title);
-        return title;
-    }
     @Autowired
     private CandidatureService candidatureService;
     @Autowired
     private CandidatureRepository candidatureRepository;
-
+    @Autowired
+    private OfferFeignClient offerFeignClient;  // Autowire the Feign Client
     // Get all candidatures
     @RequestMapping
     public ResponseEntity<List<Candidature>> getAllCandidatures() {
@@ -35,11 +33,39 @@ public class CandidatureRestAPI {
     @Autowired
     private EmailService emailService;
 
+    @RequestMapping("/internship-offers/all")
+    public List<InternshipOfferDto> getAllOffers() {
+        return candidatureService.getOffers();
+    }
+    @RequestMapping("internship-offers/{id}")
+    public InternshipOfferDto getOfferById(@PathVariable long id) {
+        return candidatureService.fetchOfferDetails(id);}
+
+    @GetMapping("/{id}/favorite-offers")
+    public List<InternshipOfferDto> getFavoriteOffers(@PathVariable int id) {
+        return candidatureService.getFavoriteOffers(id);
+    }
+    @PostMapping("/{id}/favorite-offers/{offerId}")
+    public ResponseEntity<String> saveFavoriteOffers(@PathVariable int id, @PathVariable
+    long offerId) {
+        InternshipOfferDto offer = candidatureService.fetchOfferDetails(offerId);
+        if (offer != null) {
+            candidatureService.saveFavoriteoffres(id, offerId);
+            return ResponseEntity.status(HttpStatus.OK).body("Job saved as favorite successfully.");
+        } else {
+// Gérer le cas où le job n'existe pas
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Job not found with ID: " + offerId);
+        }
+    }
+
+
+
     @PostMapping
     public ResponseEntity<Candidature> addCandidature(@RequestBody Candidature candidature) {
+
         // Ajouter la candidature dans la base de données
         Candidature savedCandidature = candidatureService.addCandidature(candidature);
-
         // Après avoir ajouté la candidature, envoyer un e-mail
         String subject = "Nouvelle Candidature";
 
@@ -123,4 +149,13 @@ public class CandidatureRestAPI {
             @RequestParam(required = false) String city) {
         return candidatureRepository.searchCandidatures(fullName, email, city);
 }
+
+
+    @Value("${welcome.message}")
+    private String welcomeMessage;
+    @GetMapping("/welcome")
+    public String welcome() {
+        return welcomeMessage;
+    }
+
 }

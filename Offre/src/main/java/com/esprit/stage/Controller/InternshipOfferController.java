@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,7 @@ public class InternshipOfferController {
     public InternshipOfferController(InternshipOfferService internshipOfferService) {
         this.internshipOfferService = internshipOfferService;
     }
+
 
     @PostMapping("/add")
     public InternshipOffer addInternshipOffer(
@@ -146,4 +148,12 @@ public class InternshipOfferController {
                     .body("Error while reverse geocoding: " + e.getMessage());
         }
     }
+
+    @Value("${welcome.message}")
+    private String welcomeMessage;
+    @GetMapping("/welcome")
+    public String welcome() {
+        return welcomeMessage;
+    }
+
 }

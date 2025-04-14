@@ -1,17 +1,17 @@
-package com.example.mscandidature;
+package com.esprit.ms.configserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.config.server.EnableConfigServer;
 
-@SpringBootApplication
+@EnableConfigServer
 @EnableDiscoveryClient
-@EnableFeignClients
-public class MScandidatureApplication {
+@SpringBootApplication
+public class ConfigServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MScandidatureApplication.class, args);
+        SpringApplication.run(ConfigServerApplication.class, args);
     }
 
 }
